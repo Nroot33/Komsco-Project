@@ -1,4 +1,3 @@
-
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="ko">
 <head>
@@ -10,55 +9,66 @@
 
 <%
 	request.setCharacterEncoding("euc-kr");
-	
+
 	Connection conn = null;
 	PreparedStatement pstmt = null;
 	ResultSet rs = null;
 	Timestamp register = new Timestamp(System.currentTimeMillis());
 
-	String realFolder = "";
-	String filename1 = "";
+	String realFolder = "D:\\DB";
+	String filename = "";
 	int maxSize = 1024 * 1024 * 5;
 	String encType = "euc-kr";
-	String savefile = "img";
 	ServletContext scontext = getServletContext();
-	realFolder = scontext.getRealPath(savefile);
 
 	try {
 		MultipartRequest multi = new MultipartRequest(request, realFolder, maxSize, encType,
 				new DefaultFileRenamePolicy());
 
 		Enumeration<?> files = multi.getFileNames();
-		String file1 = (String) files.nextElement();
-		filename1 = multi.getFilesystemName(file1);
-		
-		String fullpath = realFolder + "\\" + filename1;
-		
+		String file = (String) files.nextElement();
+		filename = multi.getFilesystemName(file);
+
+		String userFolder = multi.getParameter("id");
+
+		String beforepath = realFolder + "\\" + filename;
+		String afterpath = realFolder + "\\" + userFolder + "\\" + filename;
+
+		try {
+			File newfile = new File(beforepath);
+
+			newfile.renameTo(new File(afterpath));
+
+		} catch (Exception e) {
+
+			e.printStackTrace();
+
+		}
+
 		String jdbUrl = "jdbc:mysql://localhost:3306/db_test?serverTimezone=UTC&useSSL=false";
 		String dbId = "root";
 		String dbPass = "1234";
-
 		Class.forName("com.mysql.jdbc.Driver");
 		conn = DriverManager.getConnection(jdbUrl, dbId, dbPass);
-		
-		String sql = "insert into image values(?,?,?)";
+
+		String sql = "insert into file values(?,?,?)";
 		pstmt = conn.prepareStatement(sql);
-		pstmt.setString(1,filename1);
-		pstmt.setString(2,fullpath);
+		pstmt.setString(1, filename);
+		pstmt.setString(2, afterpath);
 		pstmt.setTimestamp(3, register);
 		pstmt.executeUpdate();
 		
+		out.print("Success to Upload File");
+		
+
 	} catch (Exception e) {
 		e.printStackTrace();
 	}
-	
-	String fullpath = realFolder + "\\" + filename1;
-
 %>
 
-<title>Success to Upload image</title>
+<title>Success to Upload File</title>
 </head>
 <body>
-	<img src="<%=fullpath%>" width=512 height=384></img>
+
 </body>
 </html>
