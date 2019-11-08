@@ -11,10 +11,8 @@
 *  Data Base
  - Linux 환경 설정
   : 환경 설정 실패 -> Window 환경 설정으로 변경
-
  - Oracle 서버 구축
   : Oracle 서버 이용이 어려워 Mysql로 대체 
-
  - Mysql 기본 문법 및 명령어 숙지
    : 인프런 "생활코딩 Mysql" 강좌 참고
 
