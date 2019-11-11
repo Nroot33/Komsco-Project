@@ -12,7 +12,6 @@
 <title>Show information</title>
 </head>
 <%
-
 	Connection conn = null;
 	PreparedStatement pstmt = null;
 	ResultSet rs = null;
@@ -23,31 +22,45 @@
 
 	Class.forName("com.mysql.jdbc.Driver");
 	conn = DriverManager.getConnection(jdbUrl, dbId, dbPass);
-	pstmt = conn.prepareStatement("select * from file ");
+	pstmt = conn.prepareStatement("select * from files ");
 	rs = pstmt.executeQuery();
-	%>
-<table border=1 style="text-align: center">
-	<thead>
-		<tr>
-			<th>Filename</th>
-			<th>Path</th>
-			<th>Date</th>
-		</tr>
-		<%while (rs.next()) { %>
-		<tr>
-			<td><%=rs.getString("filename")%></td>
-			<td><%=rs.getString("path")%></td>
-			<td><%=rs.getString("reg_date")%></td>
-		</tr>
-		<%
-			}
-		%>
-	
-</table>
-<div style="width: 115px; height: 10px; float: left;">
-	<form method="post" action="showTestForm.jsp">
-		<input type="submit" value="Return Page">
-	</form>
+%>
+<body>
+	<h1 align="center">Root's WebDrive</h1>
+	<h2 align="center">Show your files!</h2>
 
-	</body>
+	<div align="center">
+		<form method="post" action="showTestForm.jsp">
+			<input type="image"
+				src="C:/Users/komsco/Desktop/workspace/Komsco_Project/WebContent/image/Sub.png"
+				width="200" height="200"
+				style="margin-left: auto; margin-right: auto; display: block;" />
+		</form>
+	</div>
+
+
+	<table border=1 style="text-align: center">
+		<thead>
+			<tr>
+				<th>ID</th>
+				<th>Filename</th>
+				<th>Path</th>
+				<th>Date</th>
+			</tr>
+			<%
+				while (rs.next()) {
+			%>
+			<tr>
+				<td><%=rs.getString("id")%></td>
+				<td><%=rs.getString("filename")%></td>
+				<td><%=rs.getString("path")%></td>
+				<td><%=rs.getString("reg_date")%></td>
+			</tr>
+			<%
+				}
+			%>
+		
+	</table>
+
+</body>
 </html>

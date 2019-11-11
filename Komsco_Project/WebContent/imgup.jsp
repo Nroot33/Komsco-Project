@@ -6,7 +6,7 @@
 <%@ page
 	import="com.oreilly.servlet.MultipartRequest,com.oreilly.servlet.multipart.DefaultFileRenamePolicy,java.util.*,java.io.*"%>
 <%@ page import="java.sql.*"%>
-<%@ page import="pack.*" %>
+<%@ page import="pack.*"%>
 
 <%
 	request.setCharacterEncoding("euc-kr");
@@ -18,6 +18,7 @@
 
 	String realFolder = "D:\\DB";
 	String filename = "";
+	String str = "";
 	int maxSize = 1024 * 1024 * 5;
 	String encType = "euc-kr";
 	ServletContext scontext = getServletContext();
@@ -30,10 +31,10 @@
 		String file = (String) files.nextElement();
 		filename = multi.getFilesystemName(file);
 
-		String userFolder = multi.getParameter("id");
+		String user = multi.getParameter("id");
 
 		String beforepath = realFolder + "\\" + filename;
-		String afterpath = realFolder + "\\" + userFolder + "\\" + filename;
+		String afterpath = realFolder + "\\" + user + "\\" + filename;
 
 		try {
 			File newfile = new File(beforepath);
@@ -57,14 +58,15 @@
 		Class.forName("com.mysql.jdbc.Driver");
 		conn = DriverManager.getConnection(jdbUrl, dbId, dbPass);
 
-		String sql = "insert into file values(?,?,?)";
+		String sql = "insert into files values(?,?,?,?)";
 		pstmt = conn.prepareStatement(sql);
-		pstmt.setString(1, filename);
-		pstmt.setString(2, encodepath);
-		pstmt.setTimestamp(3, register);
+		pstmt.setString(1, user);
+		pstmt.setString(2, filename);
+		pstmt.setString(3, encodepath);
+		pstmt.setTimestamp(4, register);
 		pstmt.executeUpdate();
-		out.print("Success to Upload file in  "+ decodepath);
-		
+		String txt = "Success to Upload file in  "+ decodepath;
+		str = txt;
 	} catch (Exception e) {
 		e.printStackTrace();
 	}
@@ -73,11 +75,17 @@
 <title>Success to Upload file</title>
 </head>
 <body>
-<img src = "C:\Users\komsco\Desktop\workspace\TestJSP\WebContent\image\C.png" width = "500" height ="350">
-	<div style="width:115px; height:10px; float:left;"> 
-	<form method = "post" action ="showTestForm.jsp">
-	<input type= "submit" value = "Return Page">
-	</form>
+	<h1 align="center">Root's WebDrive</h1>
+	<h2 align="center">Success upload your files!</h2>
+	<h3 align="center"><%=str%></h3>
+	
+	<div align="center">
+		<form method="post" action="showTestForm.jsp">
+			<input type="image"
+				src="C:/Users/komsco/Desktop/workspace/Komsco_Project/WebContent/image/C.png"
+				width="250" height="200"
+				style="margin-left: auto; margin-right: auto; display: block;" />
+		</form>
 	</div>
 </body>
 </html>

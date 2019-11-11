@@ -6,27 +6,53 @@
 <meta http-equiv="Content-Type" content="text/html; charset=EUC-KR">
 <title>Start Page</title>
 </head>
+<style>
+.divListGroup {
+	width: 100%;
+	text-align: center;
+	overflow: hidden;
+}
+
+.divChild {
+	height: 100px;
+	display: inline-block;
+	vertical-align: middle;
+}
+</style>
+
 <body>
-	<h2>Hello World</h2>
-	<form method="post" action="insertTestForm.jsp">
-		<div style="width: 115px; height: 10px; float: left;">
-			<input type="submit" value="Add Account">
+	<h1 align="center">Root's WebDrive</h1>
+	<h2 align="center">Start to store your files!</h2>
+
+	<div align="center">
+
+		<img
+			src="C:/Users/komsco/Desktop/workspace/Komsco_Project/WebContent/image/Sub.png"
+			width="200" height="200"
+			style="margin-left: auto; margin-right: auto; display: block;" />
+	</div>
+
+	<div class="divListGroup">
+		<div class="divChild">
+			<form method="post" action="showTestForm.jsp">
+					<input type= "submit" value = "Login">
+			</form>
 		</div>
-	</form>
-	<div style="width: 130px; height: 10px; float: left;">
-		<form method="post" action="updateTestForm.jsp">
-			<input type="submit" value="Rectify Account">
+		<div class="divChild">
+			<form method="post" action="insertTestForm.jsp">
+				<input type= "submit" value = "Add Account">
+			</form>
+		</div>
+		<div class="divChild">
+			<form method="post" action="updateTestForm.jsp">
+				<input type= "submit" value = "Rectify Account">
+			</form>
+		</div>
+		<div class="divChild">
+			<form method="post" action="deleteTestForm.jsp">
+				<input type= "submit" value = "Delete Account">
+			</form>
+		</div>
 	</div>
-	</form>
-	<div style="width: 130px; height: 10px; float: left;">
-		<form method="post" action="deleteTestForm.jsp">
-			<input type="submit" value="Delete Account">
-	</div>
-	</form>
-	<div style="width: 130px; height: 10px; float: left;">
-		<form method="post" action="showTestForm.jsp">
-			<input type="submit" value="Login">
-	</div>
-	</form>
 </body>
 </html>

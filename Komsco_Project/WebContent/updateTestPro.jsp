@@ -74,10 +74,18 @@
 <title>Rectify Record</title>
 </head>
 <body>
-	<%=str%>
-	<form method="post" action="insertTestForm.jsp">
-		<input type="submit" value="Return Page">
-	</form>
+	<h1 align="center">Root's WebDrive</h1>
+	<h2 align="center"><%=str%>
+	</h2>
+	<br />
+	<div align="center">
+		<form method="post" action="startTestForm.jsp">
+			<input type="image"
+				src="C:/Users/komsco/Desktop/workspace/Komsco_Project/WebContent/image/Sub.png"
+				width="200" height="200"
+				style="margin-left: auto; margin-right: auto; display: block;" />
+		</form>
+	</div>
 </body>
 </html>
 <%

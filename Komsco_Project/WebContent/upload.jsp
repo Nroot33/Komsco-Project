@@ -33,22 +33,45 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=EUC-KR">
 <title>Upload Your Image</title>
+<style>
+.divListGroup {
+	width: 100%;
+	text-align: center;
+	overflow: hidden;
+}
+
+.divChild {
+	height: 100px;
+	display: inline-block;
+	vertical-align: middle;
+}
+</style>
 </head>
-<form method="post" enctype="multipart/form-data" action="imgup.jsp?user=id">
-	I  D : <input type = "text" name ="id" maxlength="12"><br/>
-	<input type="file" name="filename1" size=40> <input
-		type="submit" value="Upload image"><br> <br>
-</form>
 <body>
-	<div style="width: 115px; height: 50px; float: left;">
+	<h1 align="center">Root's WebDrive</h1>
+	<h2 align="center">Login</h2>
+
+	<div align="center">
 		<form method="post" action="showTestForm.jsp">
-			<input type="submit" value="Return Page">
+			<input type="image"
+				src="C:/Users/komsco/Desktop/workspace/Komsco_Project/WebContent/image/Sub.png"
+				width="200" height="200"
+				style="margin-left: auto; margin-right: auto; display: block;" />
+		</form>
+	</div>
+
+	<div class="divListGroup">
+		<form method="post" enctype="multipart/form-data"
+			action="imgup.jsp?user=id">
+			I D : <input type="text" name="id" maxlength="12"><br /> <br />
+			<input type="file" name="filename1" size=40><br /> <br /> <input
+				type="submit" value="Upload image"><br /> <br />
 		</form>
 
-		<div style="width: 115px; height: 50px; float: left;">
-			<form method="post" action="infoPro.jsp">
-				<input type="submit" value="Show list">
-			</form>
+		<form method="post" action="infoPro.jsp">
+			<input type="submit" value="Show list">
+		</form>
+	</div>
 </body>
 </html>
 <%

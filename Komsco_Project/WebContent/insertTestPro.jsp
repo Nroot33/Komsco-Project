@@ -1,4 +1,3 @@
-
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="ko">
 <head>
@@ -21,21 +20,19 @@
 	Connection conn = null;
 	PreparedStatement pstmt = null;
 	String str = "";
-	String mkdir = "";
 
 	try {
 		String jdbUrl = "jdbc:mysql://localhost:3306/db_test?serverTimezone=UTC&useSSL=false";
 		String dbId = "root";
 		String dbPass = "1234";
 
-		java.io.File file = new File("D:\\DB\\"+id);
+		java.io.File file = new File("D:\\DB\\" + id);
 		if (!file.exists())
 			file.mkdirs();
 
 		Class.forName("com.mysql.jdbc.Driver");
 		conn = DriverManager.getConnection(jdbUrl, dbId, dbPass);
-		
-		
+
 		String sql = "insert into client values(?,?,?,?)";
 		pstmt = conn.prepareStatement(sql);
 		pstmt.setString(1, id);
@@ -45,23 +42,7 @@
 		pstmt.executeUpdate();
 
 		str = "Success to Add new Record to client in table ";
-		
-		
-		String path = "D:\\DB\\"+id;
-		File Folder = new File(path);
-		
-		if (!Folder.exists()) {
-			try{
-			    Folder.mkdir(); 
-			    mkdir = " Success to Make new folder ";
-		        } 
-		        catch(Exception e){
-			    e.getStackTrace();
-			}        
-	         }else {
-	        	 mkdir = " ";
-		}
-		
+
 	} catch (Exception e) {
 		e.printStackTrace();
 		str = "Fail to Add new Record to client in table ";
@@ -82,13 +63,20 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=EUC-KR">
-<title>Add Record</title>
+	<title>Add Account</title>
 </head>
 <body>
-	<%=str%> <br> <br>
-	<%=mkdir%>
-	<form method="post" action="insertTestForm.jsp">
-		<input type="submit" value="Return Page">
-	</form>
+	<h1 align="center">Root's WebDrive</h1>
+	<h2 align="center"><%=str%>
+	</h2>
+	<br />
+	<div align="center">
+		<form method="post" action="startTestForm.jsp">
+			<input type="image"
+				src="C:/Users/komsco/Desktop/workspace/Komsco_Project/WebContent/image/Sub.png"
+				width="200" height="200"
+				style="margin-left: auto; margin-right: auto; display: block;" />
+		</form>
+	</div>
 </body>
 </html>
