@@ -81,3 +81,9 @@
 - Code refactoring 실시 
 - GitHub 업로드 및 경과 보고서 작성
 - 오픈소스 ASE256를 이용한 저장경로 암,복호화 실시 
+
+## 2019-11-11
+### 사내 보안모듈을 이용한 DB프로그램 
+- Code refactoring 실시 
+- UI 디자인 및 웹페이지 정리
+- files table 사용자 표시   
