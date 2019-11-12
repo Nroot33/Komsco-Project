@@ -22,7 +22,7 @@ import javax.crypto.spec.IvParameterSpec;
 import javax.crypto.spec.PBEKeySpec;
 import javax.crypto.spec.SecretKeySpec;
 
-public class Security {
+public class Security_AES {
 
 	public static String byteToHexString(byte[] data) {
 		StringBuilder sb = new StringBuilder();

@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=EUC-KR"
 	pageEncoding="EUC-KR"%>
 <%@ page import="java.sql.*"%>
+<%@ page import="pack.*"%>
 
 <%
 	request.setCharacterEncoding("euc-kr");
@@ -17,6 +18,10 @@
 		String jdbUrl = "jdbc:mysql://localhost:3306/db_test?serverTimezone=UTC&useSSL=false";
 		String dbId = "root";
 		String dbPass = "1234";
+		
+		Security_SHA security = new Security_SHA();
+		String encodepasswd = Security_SHA.encryptSHA256(passwd);		
+		
 		Class.forName("com.mysql.jdbc.Driver");
 		conn = DriverManager.getConnection(jdbUrl, dbId, dbPass);
 		String sql = "select id, passwd from client where id= ? ";
@@ -26,7 +31,7 @@
 		if (rs.next()) {
 			String rId = rs.getString("id");
 			String rPasswd = rs.getString("passwd");
-			if (id.equals(rId) && passwd.equals(rPasswd)) {
+			if (id.equals(rId) && encodepasswd.equals(rPasswd)) {
 %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>

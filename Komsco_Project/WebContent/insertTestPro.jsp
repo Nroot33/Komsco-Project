@@ -6,6 +6,7 @@
 <%@ page
 	import="com.oreilly.servlet.MultipartRequest,com.oreilly.servlet.multipart.DefaultFileRenamePolicy,java.util.*,java.io.*"%>
 <%@ page import="java.sql.*"%>
+<%@ page import="pack.*"%>
 
 <%
 	request.setCharacterEncoding("euc-kr");
@@ -29,14 +30,17 @@
 		java.io.File file = new File("D:\\DB\\" + id);
 		if (!file.exists())
 			file.mkdirs();
-
+			
+		Security_SHA security = new Security_SHA();
+		String encodepasswd = Security_SHA.encryptSHA256(passwd);
+		
 		Class.forName("com.mysql.jdbc.Driver");
 		conn = DriverManager.getConnection(jdbUrl, dbId, dbPass);
 
 		String sql = "insert into client values(?,?,?,?)";
 		pstmt = conn.prepareStatement(sql);
 		pstmt.setString(1, id);
-		pstmt.setString(2, passwd);
+		pstmt.setString(2, encodepasswd);
 		pstmt.setString(3, name);
 		pstmt.setTimestamp(4, register);
 		pstmt.executeUpdate();

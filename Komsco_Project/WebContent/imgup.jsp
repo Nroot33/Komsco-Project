@@ -25,7 +25,7 @@
 
 	try {
 		MultipartRequest multi = new MultipartRequest(request, realFolder, maxSize, encType,
-				new DefaultFileRenamePolicy());
+		new DefaultFileRenamePolicy());
 
 		Enumeration<?> files = multi.getFileNames();
 		String file = (String) files.nextElement();
@@ -37,20 +37,20 @@
 		String afterpath = realFolder + "\\" + user + "\\" + filename;
 
 		try {
-			File newfile = new File(beforepath);
+	File newfile = new File(beforepath);
 
-			newfile.renameTo(new File(afterpath));
+	newfile.renameTo(new File(afterpath));
 
 		} catch (Exception e) {
 
-			e.printStackTrace();
+	e.printStackTrace();
 
 		}
 
 		String plainpath = afterpath;
 		String key = "secret key";
-		String encodepath = Security.encryptAES256(afterpath, key);
-		String decodepath = Security.decryptAES256(encodepath, key);
+		String encodepath = Security_AES.encryptAES256(afterpath, key);
+		String decodepath = Security_AES.decryptAES256(encodepath, key);
 	
 		String jdbUrl = "jdbc:mysql://localhost:3306/db_test?serverTimezone=UTC&useSSL=false";
 		String dbId = "root";

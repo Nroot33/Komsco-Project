@@ -3,11 +3,10 @@
 <%@ page
 	import="com.oreilly.servlet.MultipartRequest,com.oreilly.servlet.multipart.DefaultFileRenamePolicy,java.util.*,java.io.*"%>
 <%@ page import="java.sql.*"%>
-
+<%@ page import="pack.*"%>
 <%
 	request.setCharacterEncoding("euc-kr");
 %>
-
 <%
 	String id = request.getParameter("id");
 	String passwd = request.getParameter("passwd");
@@ -23,6 +22,9 @@
 		String dbId = "root";
 		String dbPass = "1234";
 		
+		Security_SHA security = new Security_SHA();
+		String encodepasswd = Security_SHA.encryptSHA256(passwd);
+			
 		Class.forName("com.mysql.jdbc.Driver");
 		conn = DriverManager.getConnection(jdbUrl, dbId, dbPass);
 		String sql = "select id, passwd from client where id= ? ";
@@ -34,7 +36,7 @@
 			String rId = rs.getString("id");
 			String rPasswd = rs.getString("passwd");
 			
-			if(id.equals(rId) && passwd.equals(rPasswd)){
+			if(id.equals(rId) && encodepasswd.equals(rPasswd)){
 				sql = "delete from client where id = ? ";
 				pstmt = conn.prepareStatement(sql);
 				pstmt.setString(1, id);
@@ -48,9 +50,14 @@
 				str = "Delete Record to client & files in table.";
 				
 				java.io.File file = new File("D:\\DB\\"+id);
-				if (file.exists())
+				if (file.exists()){
+					File[] deleteFolderList = file.listFiles();
+					for (int j = 0; j < deleteFolderList.length; j++) {
+						deleteFolderList[j].delete();
+					}
+					
 					file.delete();
-						
+				}
 			}else{
 				str = ("Password is wrong");
 			}		

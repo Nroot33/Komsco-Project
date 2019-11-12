@@ -21,7 +21,7 @@
 </style>
 <body>
 	<h1 align="center">Root's WebDrive</h1>
-	<h2>Rectify Record to client in table</h2>
+	<h2 align="center">Rectify Record to client in table</h2>
 
 	<div align="center">
 		<form method="post" action="startTestForm.jsp">

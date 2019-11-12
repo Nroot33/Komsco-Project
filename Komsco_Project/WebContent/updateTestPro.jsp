@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=EUC-KR"
 	pageEncoding="EUC-KR"%>
 <%@ page import="java.sql.*"%>
-
+<%@ page import="pack.*"%>
 <%
 	request.setCharacterEncoding("euc-kr");
 %>
@@ -21,6 +21,9 @@
 		String dbId = "root";
 		String dbPass = "1234";
 
+		Security_SHA security = new Security_SHA();
+		String encodepasswd = Security_SHA.encryptSHA256(passwd);
+		
 		Class.forName("com.mysql.jdbc.Driver");
 		conn = DriverManager.getConnection(jdbUrl, dbId, dbPass);
 		String sql = "select id, passwd from client where id= ? ";
@@ -32,7 +35,7 @@
 			String rId = rs.getString("id");
 			String rPasswd = rs.getString("passwd");
 
-			if (id.equals(rId) && passwd.equals(rPasswd)) {
+			if (id.equals(rId) && encodepasswd.equals(rPasswd)) {
 				sql = "update client set name = ? where id = ? ";
 				pstmt = conn.prepareStatement(sql);
 				pstmt.setString(1, name);
