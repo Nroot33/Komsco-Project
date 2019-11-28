@@ -44,7 +44,6 @@
 	text-align: center;
 	overflow: hidden;
 }
-
 .divChild {
 	height: 100px;
 	display: inline-block;
@@ -70,10 +69,11 @@
 			action="imgup.jsp?user=id">
 			I D : <input type="text" name="id" maxlength="12"><br /> <br />
 			<input type="file" name="filename1" size=40><br /> <br /> <input
-				type="submit" value="Upload image"><br /> <br />
+				type="submit" value="Upload file"><br /> <br />
 		</form>
 
-		<form method="post" action="infoPro.jsp">
+		<form method="post" enctype="multipart/form-data"
+			action="infoPro.jsp?user=id">
 			<input type="submit" value="Show list">
 		</form>
 	</div>

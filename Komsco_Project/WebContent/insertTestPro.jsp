@@ -20,8 +20,9 @@
 
 	Connection conn = null;
 	PreparedStatement pstmt = null;
-	String str = "";
-
+	String str1 = "";
+	String str2 = "";
+	
 	try {
 		String jdbUrl = "jdbc:mysql://localhost:3306/db_test?serverTimezone=UTC&useSSL=false";
 		String dbId = "root";
@@ -37,19 +38,25 @@
 		Class.forName("com.mysql.jdbc.Driver");
 		conn = DriverManager.getConnection(jdbUrl, dbId, dbPass);
 
-		String sql = "insert into client values(?,?,?,?)";
-		pstmt = conn.prepareStatement(sql);
+		String sql1 = "insert into client values(?,?,?,?)";
+		pstmt = conn.prepareStatement(sql1);
 		pstmt.setString(1, id);
 		pstmt.setString(2, encodepasswd);
 		pstmt.setString(3, name);
 		pstmt.setTimestamp(4, register);
 		pstmt.executeUpdate();
+		
+		
+		String sql2 = "create table "+id+" (filename text, path text, reg_date datetime)";
+		pstmt = conn.prepareStatement(sql2);
+		pstmt.executeUpdate();
+		
 
-		str = "Success to Add new Record to client in table ";
-
+		str1 = "Success to Add new Record to client in table ";
+		str2 = "Success to Add new table in database ";
+		
 	} catch (Exception e) {
 		e.printStackTrace();
-		str = "Fail to Add new Record to client in table ";
 	} finally {
 		if (pstmt != null)
 			try {
@@ -71,8 +78,8 @@
 </head>
 <body>
 	<h1 align="center">Root's WebDrive</h1>
-	<h2 align="center"><%=str%>
-	</h2>
+	<h2 align="center"><%=str1%></h2>
+	<h2 align="center"><%=str2%></h2>
 	<br />
 	<div align="center">
 		<form method="post" action="startTestForm.jsp">

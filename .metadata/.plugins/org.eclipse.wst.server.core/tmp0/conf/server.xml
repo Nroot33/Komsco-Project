@@ -149,7 +149,7 @@
              Note: The pattern used is equivalent to using pattern="common" -->
         <Valve className="org.apache.catalina.valves.AccessLogValve" directory="logs" pattern="%h %l %u %t &quot;%r&quot; %s %b" prefix="localhost_access_log" suffix=".txt"/>
 
-      <Context docBase="C:\Users\komsco\Desktop\workspace\.metadata\.plugins\org.eclipse.wst.server.core\tmp0\wtpwebapps\ROOT" path="" reloadable="false"/><Context docBase="C:\Users\komsco\Desktop\workspace\.metadata\.plugins\org.eclipse.wst.server.core\tmp0\wtpwebapps\TestJSP" path="/TestJSP" reloadable="true" source="org.eclipse.jst.jee.server:TestJSP"/></Host>
+      <Context docBase="C:\Users\komsco\Desktop\workspace\.metadata\.plugins\org.eclipse.wst.server.core\tmp0\wtpwebapps\ROOT" path="" reloadable="false"/><Context docBase="C:\Users\komsco\Desktop\workspace\Komsco_Project\WebContent" path="/Komsco_Project" reloadable="true" source="org.eclipse.jst.jee.server:Komsco_Project"><Resources><PreResources base="C:\Users\komsco\Desktop\workspace\Komsco_Project\build\classes" classLoaderOnly="false" className="org.apache.catalina.webresources.DirResourceSet" internalPath="/" webAppMount="/WEB-INF/classes"/></Resources></Context></Host>
     </Engine>
   </Service>
 </Server>

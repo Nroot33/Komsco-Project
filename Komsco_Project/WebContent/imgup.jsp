@@ -58,12 +58,11 @@
 		Class.forName("com.mysql.jdbc.Driver");
 		conn = DriverManager.getConnection(jdbUrl, dbId, dbPass);
 
-		String sql = "insert into files values(?,?,?,?)";
+		String sql = "insert into "+user+" values(?,?,?)";
 		pstmt = conn.prepareStatement(sql);
-		pstmt.setString(1, user);
-		pstmt.setString(2, filename);
-		pstmt.setString(3, encodepath);
-		pstmt.setTimestamp(4, register);
+		pstmt.setString(1, filename);
+		pstmt.setString(2, encodepath);
+		pstmt.setTimestamp(3, register);
 		pstmt.executeUpdate();
 		String txt = "Success to Upload file in  "+ decodepath;
 		str = txt;

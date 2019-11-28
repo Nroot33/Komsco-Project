@@ -15,7 +15,8 @@
 	Connection conn = null;
 	PreparedStatement pstmt = null;
 	ResultSet rs = null;
-	String str ="";
+	String str1 ="";
+	String str2 ="";
 	
 	try{
 		String jdbUrl = "jdbc:mysql://localhost:3306/db_test?serverTimezone=UTC&useSSL=false";
@@ -27,8 +28,8 @@
 			
 		Class.forName("com.mysql.jdbc.Driver");
 		conn = DriverManager.getConnection(jdbUrl, dbId, dbPass);
-		String sql = "select id, passwd from client where id= ? ";
-		pstmt = conn.prepareStatement(sql);
+		String sql1 = "select id, passwd from client where id= ? ";
+		pstmt = conn.prepareStatement(sql1);
 		pstmt.setString(1,id);
 		rs = pstmt.executeQuery();
 		
@@ -37,17 +38,17 @@
 			String rPasswd = rs.getString("passwd");
 			
 			if(id.equals(rId) && encodepasswd.equals(rPasswd)){
-				sql = "delete from client where id = ? ";
-				pstmt = conn.prepareStatement(sql);
+				String sql2 = "delete from client where id = ? ";
+				pstmt = conn.prepareStatement(sql2);
 				pstmt.setString(1, id);
 				pstmt.executeUpdate();
 				
-				sql = "delete from files where id = ?";
-				pstmt = conn.prepareStatement(sql);
-				pstmt.setString(1, id);
+				String sql3 = "drop table "+id;
+				pstmt = conn.prepareStatement(sql3);
 				pstmt.executeUpdate();
 				
-				str = "Delete Record to client & files in table.";
+				str1 = "Delete Record to client in table.";
+				str2 = "Delete table in database.";
 				
 				java.io.File file = new File("D:\\DB\\"+id);
 				if (file.exists()){
@@ -59,10 +60,10 @@
 					file.delete();
 				}
 			}else{
-				str = ("Password is wrong");
+				str1 = ("Password is wrong");
 			}		
 		}else{
-			str = ("ID is wrong");
+			str1 = ("ID is wrong");
 		}		
 	}catch(Exception e){
 		e.printStackTrace();
@@ -80,8 +81,8 @@
 </head>
 <body>
 	<h1 align="center">Root's WebDrive</h1>
-	<h2 align="center"><%=str%>
-	</h2>
+	<h2 align="center"><%=str1%></h2>
+	<h2 align="center"><%=str2%></h2>
 	<br />
 	<div align="center">
 		<form method="post" action="startTestForm.jsp">
