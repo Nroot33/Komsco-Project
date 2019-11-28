@@ -99,4 +99,10 @@
  - Code refactoring 실시
  - 수정본 GitHub 업로드 및 경과 보고서 작성
  - 담당 과장님과 프로젝트 관련 협의 실시   
+ 
+## 2019-11-28
+### 사내 보안모듈을 이용한 DB프로그램 
+ - 사용자 별 database 분할 및 수정.삭제기능 
+ - Code refactoring 실시
+ - 수정본 GitHub 업로드 및 경과 보고서 작성  
 
