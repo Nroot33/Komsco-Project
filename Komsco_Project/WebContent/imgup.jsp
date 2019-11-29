@@ -15,7 +15,8 @@
 	PreparedStatement pstmt = null;
 	ResultSet rs = null;
 	Timestamp register = new Timestamp(System.currentTimeMillis());
-
+	
+	String ii = request.getParameter("user");
 	String realFolder = "D:\\DB";
 	String filename = "";
 	String str = "";
@@ -31,10 +32,8 @@
 		String file = (String) files.nextElement();
 		filename = multi.getFilesystemName(file);
 
-		String user = multi.getParameter("id");
-
 		String beforepath = realFolder + "\\" + filename;
-		String afterpath = realFolder + "\\" + user + "\\" + filename;
+		String afterpath = realFolder + "\\" + ii + "\\" + filename;
 
 		try {
 	File newfile = new File(beforepath);
@@ -58,7 +57,7 @@
 		Class.forName("com.mysql.jdbc.Driver");
 		conn = DriverManager.getConnection(jdbUrl, dbId, dbPass);
 
-		String sql = "insert into "+user+" values(?,?,?)";
+		String sql = "insert into "+ii+" values(?,?,?)";
 		pstmt = conn.prepareStatement(sql);
 		pstmt.setString(1, filename);
 		pstmt.setString(2, encodepath);
@@ -77,7 +76,6 @@
 	<h1 align="center">Root's WebDrive</h1>
 	<h2 align="center">Success upload your files!</h2>
 	<h3 align="center"><%=str%></h3>
-	
 	<div align="center">
 		<form method="post" action="showTestForm.jsp">
 			<input type="image"

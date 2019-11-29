@@ -33,7 +33,7 @@
 	</div>
 
 	<div class="divListGroup">
-			<form method="post" action="upload.jsp">
+			<form method="post" action="personalTestPro.jsp">
 				I D : <input type="text" name="id" maxlength="12"><br /> <br />
 				Pass : <input type="password" name="passwd" maxlength="12"><br /><br />
 				<input type="submit" value="Login">
