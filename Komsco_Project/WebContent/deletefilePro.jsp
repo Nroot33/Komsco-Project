@@ -8,28 +8,27 @@
 	String i = request.getParameter("user");
 	String p = request.getParameter("path");
 	String fn = request.getParameter("filename");
-	int a =0;
+	int a = 0;
 	Connection conn = null;
 	PreparedStatement pstmt = null;
 	ResultSet rs = null;
-	out.println(a++);
+
 	try {
 		out.println(a++);
 		String jdbUrl = "jdbc:mysql://localhost:3306/db_test?serverTimezone=UTC&useSSL=false";
 		String dbId = "root";
 		String dbPass = "1234";
-		out.println(a++);
+
 		Class.forName("com.mysql.jdbc.Driver");
 		conn = DriverManager.getConnection(jdbUrl, dbId, dbPass);
-		out.println(a++);
-		pstmt = conn.prepareStatement("delete from " + i + " where filename = '" +fn+"'");
+
+		pstmt = conn.prepareStatement("delete from " + i + " where filename = '" + fn + "'");
 		pstmt.executeUpdate();
-		out.println(a++);
-		 		java.io.File file = new File(p);
-				if (file.exists()) {
-					file.delete();
-				} 
-				out.println(a++);
+
+		java.io.File file = new File(p);
+		if (file.exists()) {
+			file.delete();
+		}
 %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="ko">

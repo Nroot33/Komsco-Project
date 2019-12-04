@@ -20,8 +20,6 @@
 		conn = DriverManager.getConnection(jdbUrl, dbId, dbPass);
 		pstmt = conn.prepareStatement("select * from " + i);
 		rs = pstmt.executeQuery();
-		
-
 %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="ko">
@@ -41,23 +39,24 @@
 		</form>
 	</div>
 
-	<table  border=1 style="text-align: center; margin-left: auto; margin-right: auto;width: 500px; height: 300px;"  >
+	<table border=1
+		style="text-align: center; margin-left: auto; margin-right: auto; width: 500px; height: 300px;">
 		<thead>
 			<tr>
 				<th>Date</th>
 				<th>Filename</th>
 				<th>Show</th>
 				<th>Delete</th>
+				<th>DownLoad</th>
 			</tr>
 			<%
 				while (rs.next()) {
-					String path = rs.getString("path");
-					String key = "secret key";
-					String decodepath = Security_AES.decryptAES256(path, key);
-					String dp = java.net.URLEncoder.encode(decodepath,"euc-kr"); 
-					
-					String fn = rs.getString("filename");
-					
+						String path = rs.getString("path");
+						String key = "secret key";
+						String decodepath = Security_AES.decryptAES256(path, key);
+						String dp = java.net.URLEncoder.encode(decodepath, "euc-kr");
+
+						String fn = rs.getString("filename");
 			%>
 			<tr>
 				<td><%=rs.getString("reg_date")%></td>
@@ -72,6 +71,12 @@
 					<form method="post" enctype="multipart/form-data"
 						action="deletefilePro.jsp?user=<%=i%>&path=<%=dp%>&filename=<%=fn%>">
 						<input type="submit" value="Delete">
+					</form>
+				</th>
+				<th>
+					<form method="post" enctype="multipart/form-data"
+						action="downfilePro.jsp?user=<%=i%>&path=<%=dp%>&filename=<%=fn%>">
+						<input type="submit" value="DownLoad">
 					</form>
 				</th>
 			</tr>
