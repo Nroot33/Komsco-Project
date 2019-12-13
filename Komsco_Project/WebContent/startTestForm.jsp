@@ -27,7 +27,7 @@
 	<div align="center">
 
 		<img
-			src="C:/Users/komsco/Desktop/workspace/Komsco_Project/WebContent/image/Sub.png"
+			src="https://blogpfthumb-phinf.pstatic.net/MjAxOTA0MDFfMTY5/MDAxNTU0MTA0NTc2NzE3.QmccL7IxkEFWbv-FD-Vz__KA3UcCuIHyG0PiePYvGkYg.sbYFdc1fQS0w2toFI6YUQcDP3LE4Z49TYO0WkaWX_wIg.PNG.gyrms96/Sub.png"
 			width="200" height="200"
 			style="margin-left: auto; margin-right: auto; display: block;" />
 	</div>

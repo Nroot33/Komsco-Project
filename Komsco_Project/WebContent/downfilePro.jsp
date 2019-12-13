@@ -18,7 +18,7 @@
 	<h1 align="center">Root's WebDrive Services</h1>
 	<h2 align="center">DownLoad your files</h2>
 	<div align="center">
-	<a class="btn" href="<%=path%>" download>File Download</a>
+	<a href="<%=path%>" download>File Download</a>
 	</div>
 
 </body>

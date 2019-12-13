@@ -8,13 +8,12 @@
 	String i = request.getParameter("user");
 	String p = request.getParameter("path");
 	String fn = request.getParameter("filename");
-	int a = 0;
 	Connection conn = null;
 	PreparedStatement pstmt = null;
 	ResultSet rs = null;
 
 	try {
-		out.println(a++);
+
 		String jdbUrl = "jdbc:mysql://localhost:3306/db_test?serverTimezone=UTC&useSSL=false";
 		String dbId = "root";
 		String dbPass = "1234";
@@ -39,10 +38,10 @@
 	<h1 align="center">Root's WebDrive Services</h1>
 	<h2 align="center">delete your files in list & DB!</h2>
 
-	<div align="center">
+	<div align="center"> 
 		<form method="post" action="showTestForm.jsp">
 			<input type="image"
-				src="C:/Users/komsco/Desktop/workspace/Komsco_Project/WebContent/image/C.png"
+				src="https://blogpfthumb-phinf.pstatic.net/MjAxOTA0MDFfMTY5/MDAxNTU0MTA0NTc2NzE3.QmccL7IxkEFWbv-FD-Vz__KA3UcCuIHyG0PiePYvGkYg.sbYFdc1fQS0w2toFI6YUQcDP3LE4Z49TYO0WkaWX_wIg.PNG.gyrms96/Sub.png"
 				width="250" height="200"
 				style="margin-left: auto; margin-right: auto; display: block;" />
 		</form>
